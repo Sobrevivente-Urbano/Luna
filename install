@@ -1,0 +1,32 @@
+sudo apt update -y
+sudo apt upgrade -y
+
+sudo apt-get install curl nmap jq net-tools git	\
+  unzip unrar youtube-dl --no-install-recommends -y
+
+pip3 install youtube-dl
+pip3 install BeautifulSoup4
+pip3 install lxml
+pip3 install python-aiml
+pip3 install GoogleNews
+pip3 install wikipedia
+
+sudo mkdir /etc/luna
+sudo chmod 777 -R /etc/luna
+
+sudo cp -r . /etc/luna
+
+sudo chmod +x /etc/luna/*
+sudo chmod 777 -R /etc/luna/*
+
+sudo ln -s /etc/luna/banner /usr/bin/banner
+sudo ln -s /etc/luna/disco /usr/bin/disco
+sudo ln -s /etc/luna/dispositivos /usr/bin/dispositivos
+sudo ln -s /etc/luna/global /usr/bin/global
+sudo ln -s /etc/luna/tempo /usr/bin/tempo
+sudo ln -s /etc/luna/global /usr/bin/global
+sudo ln -s /etc/luna/myip /usr/bin/myip
+sudo ln -s /etc/luna/luna /usr/bin/luna
+sudo ln -s /etc/luna/ytmp3 /usr/bin/ytmp3
+sudo ln -s /etc/luna/ytmp4 /usr/bin/ytmp4
+

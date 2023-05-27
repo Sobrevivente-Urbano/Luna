@@ -1,0 +1,11 @@
+#!/bin/bash
+
+#sudo ufw enable
+
+PORTA=$(echo "$*")
+
+FIREWALL=$(echo $(sudo ufw $PORTA))
+
+echo "Firewall atualizado!"
+exit 0
+

@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Mensagem de numero de dispostivos conectados
+TXT_DISPOSITIVOS=""
+
+# Mensagem TXT a ser enviada pelo telegram
+mensagem_txt=""
+
+# Mensagem de quantidade de dispositivos na rede
+numero_dispositivos=""
+
+###########################################
+# Relatorio de dispositivos conectados a rede
+###########################################
+
+  dispositivos=`nmap -sP 192.168.0.0/24 | tail -n1 | awk '{print $6}' | tr -d '()' `
+
+  numero_dispositivos="Atualmente existem $dispositivos dispositivos conectados a sua rede."
+
+  combina=$(echo $numero_dispositivos | tr -d '""')
+
+  TXT_DISPOSITIVOS="$combina"
+  echo "$combina"
+
+exit 0

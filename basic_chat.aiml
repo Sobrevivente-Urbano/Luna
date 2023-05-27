@@ -1,0 +1,93 @@
+<aiml version="1.0.1" encoding="UTF-8">
+<!-- basic_chat.aiml -->
+
+    <category>
+        <pattern>HELLO</pattern>
+        <template>
+            Well, hello!
+        </template>
+    </category>
+    
+	<category>
+		<pattern>IP</pattern>
+		<template>
+			<system>myip</system>
+		</template>
+	</category>
+
+
+	<category>
+		<pattern>KERNEL</pattern>
+		<template>
+			<system>uname -r</system>
+		</template>
+	</category>
+
+	<category>
+		<pattern>OS</pattern>
+		<template>
+			<system>lsb_release -sd</system>
+		</template>
+	</category>
+
+	<category>
+		<pattern>TEMPO</pattern>
+		<template>
+			<system>tempo</system>
+		</template>
+	</category>
+
+	<category>
+		<pattern>REDE</pattern>
+		<template>
+			<system>dispositivos</system>
+		</template>
+	</category>
+
+	<category>
+		<pattern>HD</pattern>
+		<template>
+			<system>disco</system>
+		</template>
+	</category>
+
+	<category>
+		<pattern>HORA</pattern>
+		<template>
+			<system>LC_TIME="C" TZ="America/Sao_Paulo" date "+%I:%M %p"</system>
+		</template>
+	</category>
+
+	<category>
+	    <pattern>VERIFICAR DNS</pattern>
+	    <template>
+		<system>checkdns</system>
+	    </template>
+	</category>
+
+	<category>
+		<pattern>CLIMA</pattern>
+		<template>
+			<system>tempo</system>
+		</template>
+	</category>
+
+	<category>
+		<pattern>DEFINA *</pattern>
+		<template>
+			<system>wiki <star/></system>
+		</template>
+	</category>
+
+	<category>
+		<pattern>*</pattern>
+		<template>
+			<random>
+				<li>Desculpe, eu não entendi!</li>
+				<li>Eu não entendo isso ainda. Talvez você possa me ensinar.</li>
+				<li>Eu não sei como responder isso. Talvez eu possa te interessar em outra coisa.</li>
+			</random>
+		</template>
+	</category>
+    
+</aiml>

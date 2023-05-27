@@ -1,0 +1,21 @@
+#!/bin/bash
+
+JP=`LC_TIME="C" TZ="Asia/Tokyo" date "+%I:%M %p"`
+RU=`LC_TIME="C" TZ="Europe/Moscow" date "+%I:%M %p"`
+AL=`LC_TIME="C" TZ="Europe/Berlin" date "+%I:%M %p"`
+SP=`LC_TIME="C" TZ="America/Sao_Paulo" date "+%I:%M %p"`
+NY=`LC_TIME="C" TZ="America/New_York" date "+%I:%M %p"`
+
+echo
+echo $JP - Japão/Tokio
+echo
+echo $RU - Russia/Moscou
+echo
+echo
+echo $AL - Alemanha/Berlin
+echo
+echo
+echo $SP - Brasil/São Paulo
+echo
+echo $NY - America/New York
+echo

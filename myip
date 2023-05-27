@@ -1,0 +1,4 @@
+#!/bin/bash
+
+myip="$(dig +short txt ch whoami.cloudflare @1.0.0.1 | awk -F'"' '{ print $2}')"
+echo "$myip"

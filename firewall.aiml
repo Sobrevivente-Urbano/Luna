@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<aiml version="1.0">
+
+
+<category>
+    <pattern>FECHAR PORTA * TCP</pattern>
+    <template>
+	fechando porta <star/>/TCP : <system>firewall deny <star/>/tcp</system>
+    </template>
+</category>
+
+<category>
+    <pattern>FECHAR PORTA * UDP</pattern>
+    <template>
+	fechando porta <star/>/UDP : <system>firewall deny <star/>/udp</system>
+    </template>
+</category>
+
+<category>
+    <pattern>ABRIR PORTA * TCP</pattern>
+    <template>
+	abrindo porta <star/>/TCP : <system>firewall allow <star/>/tcp</system>
+    </template>
+</category>
+
+<category>
+    <pattern>ABRIR PORTA * UDP</pattern>
+    <template>
+	abrindo porta <star/>/UDP : <system>firewall allow <star/>/udp</system>
+    </template>
+</category>
+
+</aiml>

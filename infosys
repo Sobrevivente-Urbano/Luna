@@ -1,0 +1,69 @@
+#!/bin/bash
+
+UPTIME_S=$(cut -d' ' -f 1 /proc/uptime)
+UPTIME_MIN=$(echo $UPTIME_S / "60" | bc)
+echo " "
+echo -e "+----------------------------------------------------------+"
+echo -e "|                  INFORMAÇÕES DO SISTEMA                  |"
+echo -e "+----------------------------------------------------------+"
+echo -e ""
+echo -e "  OS.............: "`hostnamectl | grep "Operating System" | cut -d ' ' -f5-`
+echo -e "  Kernel.........: "`uname -r`
+echo -e "  Architecture...: "`arch`
+echo -e ""
+echo -e "  Processador....: "`grep 'model name' /proc/cpuinfo | tail -n 1 | cut -d':' -f 2 | sed 's/^ //g'`
+echo -e "  CPUs...........: "`grep -c processor /proc/cpuinfo | tail -n 1 | cut -d':' -f 2 | sed 's/^ //g'`
+echo -e ""
+echo -e "  Memória........: "`free -g -h -t | grep Mem.: | awk '{print $2}'`
+echo -e "  Memória Em Uso.: "`free -g -h -t | grep Mem.: | awk '{print $3}'`
+echo -e "  Swap...........: "`free -g -h -t | grep Swap: | awk '{print $2}'`
+echo -e "  Swap Em Uso....: "`free -g -h -t | grep Swap: | awk '{print $3}'`
+echo " "
+echo -e "  Memória Total..: "`free -g -h -t | grep Total: | awk '{print $2}'`
+echo -e "  Memória Usada..: "`free -g -h -t | grep Total: | awk '{print $3}'`
+echo -e ""
+echo -e "  Uptime.........: "\\$UPTIME_MIN" minutos"
+echo " "
+echo -e "+----------------------------------------------------------+"
+echo " "
+echo " "
+echo -e "+----------------------------------------------------------+"
+echo -e "|                  INFORMAÇÕES DA REDE                     |"
+echo -e "+----------------------------------------------------------+"
+echo " "
+
+iface=`/sbin/ifconfig | grep mtu | tr -s " " | cut -d " " -f 1 | tr ":" " " | grep -v lo`
+
+show_info()
+{
+nic=$1
+
+ip=`/sbin/ifconfig ${nic}  |  awk '/inet/ {print}' | awk '{print $2}' | head -1`
+ip6=`/sbin/ifconfig ${nic}  |  awk '/inet6/ {print}' | awk '{print $2}' | head -1`
+mask=`/sbin/ifconfig ${nic}  |  awk '/inet/ {print}' | awk '{print $4}' | head -1`
+gw=`/sbin/route -n | awk '/'${nic}'/ {print}' | awk '{print $2}' | head -1`
+mac=`/sbin/ifconfig ${nic}  |  awk '/ether/ {print}' | awk '{print $2}' | head -1`
+
+echo -e "  Interface: $nic"
+echo -e " "
+echo -e "  V4"
+echo -e " "
+echo -e "  IP.............: $ip"
+echo -e "  Mask...........: $mask"
+echo -e "  Gateway........: $gw"
+echo -e "  Mac............: $mac"
+echo -e " "
+echo -e "  V6"
+echo -e " "
+echo -e "  IP.............: $ip6"
+}
+
+# Loop show Information
+for i in $iface
+do
+        show_info $i
+        echo " "
+done
+
+echo -e "+----------------------------------------------------------+"
+echo " "
